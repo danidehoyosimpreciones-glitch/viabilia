@@ -1,7 +1,7 @@
-:root { --negro:#05080f; --noche:#0a1428; --panel:#0f1d3a; --linea:#1f3260; --azul:#2f6bff; --claro:#7aa5ff; --blanco:#f5f8ff; --gris:#9db0d6; --bien:#4ade80; --mal:#fb7185; }
+:root { --negro:#05080f; --noche:#0a1428; --panel:#0f1d3a; --linea:#1f3260; --azul:#2f6bff; --claro:#7aa5ff; --blanco:#f5f8ff; --gris:#9db0d6; --bien:#34d399; --mal:#f87171; --oro:#fbbf24; --mono:"JetBrains Mono",ui-monospace,Consolas,monospace; --serif:"STIX Two Text","Latin Modern Roman",Georgia,serif; }
 * { box-sizing: border-box; }
-body { margin:0; background:radial-gradient(900px 400px at 80% -10%, #12306e 0, transparent 70%), var(--negro); color:var(--blanco); font:16px/1.55 "DM Sans",system-ui,sans-serif; min-height:100vh; }
-h1,h2,h3,.logo { font-family:Sora,"DM Sans",sans-serif; letter-spacing:-.02em; }
+body { margin:0; background:radial-gradient(900px 400px at 80% -10%, #12306e 0, transparent 70%), var(--negro); color:var(--blanco); font:16px/1.6 Inter,system-ui,sans-serif; min-height:100vh; }
+h1,h2,h3,.logo { font-family:Inter,system-ui,sans-serif; letter-spacing:-.02em; }
 h1 { font-size:clamp(2rem,5vw,3.2rem); font-weight:800; line-height:1.1; margin:0 0 12px; }
 h2 { font-size:1.35rem; margin:0 0 6px; } h3 { margin:24px 0 8px; }
 .top { display:flex; justify-content:space-between; align-items:center; padding:14px 24px; border-bottom:1px solid var(--linea); background:rgba(10,20,40,.85); backdrop-filter:blur(6px); position:sticky; top:0; z-index:5; }
@@ -36,7 +36,7 @@ button.ghost { background:transparent; color:var(--blanco); border:1px solid var
 .alts { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; }
 .kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px; margin:16px 0; }
 .kpi { background:var(--panel); border:1px solid var(--linea); border-left:4px solid var(--azul); border-radius:10px; padding:12px 14px; }
-.kpi b { display:block; font:800 1.4rem Sora,sans-serif; } .kpi span { color:var(--gris); font-size:.82rem; }
+.kpi b { display:block; font:700 1.3rem var(--mono); } .kpi span { color:var(--gris); font-size:.82rem; }
 .concl { border:1px solid var(--azul); background:rgba(47,107,255,.12); border-radius:12px; padding:16px 18px; }
 .concl.no { border-color:var(--mal); background:rgba(251,113,133,.1); }
 .barra { display:grid; grid-template-columns:130px 1fr 120px; gap:10px; align-items:center; margin:8px 0; font-size:.9rem; }
@@ -46,3 +46,21 @@ th,td { padding:8px 10px; border-bottom:1px solid var(--linea); text-align:right
 .sup { color:var(--gris); font-size:.9rem; }
 @media (max-width:560px) { .barra { grid-template-columns:90px 1fr; } .barra b { grid-column:2; } }
 @media (prefers-reduced-motion:reduce) { * { animation:none !important; transition:none !important; } }
+
+/* ---- Paleta de estudio: azul (atención), verde (notas), amarillo (valores clave), rojo (alertas) ---- */
+td + td, .barra b, .fmt, input[type=number] { font-family:var(--mono); }
+.kpis { grid-template-columns:repeat(3,1fr); }
+@media (max-width:720px) { .kpis { grid-template-columns:repeat(2,1fr); } }
+@media (max-width:420px) { .kpis { grid-template-columns:1fr; } }
+.kpi.clave { border-left-color:var(--oro); } .kpi.clave b { color:var(--oro); }
+.nota { border-left:4px solid var(--bien); background:rgba(52,211,153,.1); border-radius:8px; padding:10px 14px; margin:14px 0; color:#d1fae5; font-size:.92rem; }
+.alerta { border-left:4px solid var(--mal); background:rgba(248,113,113,.1); border-radius:8px; padding:12px 16px; color:#fecaca; }
+.alerta ul { margin:8px 0; padding-left:20px; }
+.fmt { display:block; color:var(--oro); font-size:.8rem; margin-top:3px; }
+.formula { font:italic 1.1rem var(--serif); color:var(--oro); margin:8px 0; }
+details summary { cursor:pointer; font-weight:700; } details[open] summary { margin-bottom:8px; }
+@media print {
+  :root { --noche:#fff; --panel:#fff; --linea:#bbb; --blanco:#000; --gris:#444; --oro:#92400e; --azul:#1d4ed8; }
+  body { background:#fff; } .top, .tabs, .row, button, .nota:first-of-type { display:none !important; }
+  .rel { width:var(--w,100%) !important; }
+}
