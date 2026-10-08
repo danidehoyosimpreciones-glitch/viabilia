@@ -3,11 +3,11 @@
 Aplicación web para decidir en qué invertir. El usuario ingresa dos o más alternativas (inversión, vida útil, ingresos, costos y valor de salvamento) y la plataforma calcula VPN, TIR, CAUE, relación beneficio/costo y periodo de recuperación, los compara en un dashboard y escribe una conclusión.
 
 ## ¿Para quién es?
-- **Beneficiario del caso real:** [COMPLETAR: nombre real de la empresa, entidad, comunidad o público estudiantil].
+- **Beneficiario del caso real:** la tienda de barrio de la señora Ceris Paola de Hoyos, ubicada en el barrio Alto de las Acacias, un barrio de más de 500 habitantes rodeado de tiendas más grandes que compiten por los mismos clientes.
 - **Otros usuarios posibles:** estudiantes de ingeniería económica, microempresarios y comunidades que deban elegir entre alternativas de inversión.
 
 ## La idea en una frase
-Esta herramienta resuelve [COMPLETAR: problemática concreta] de [COMPLETAR: nombre real del beneficiario], y cualquier actor similar podría usarla para decidir entre alternativas de inversión con criterios de ingeniería económica (VPN, TIR, CAUE y B/C).
+Esta herramienta resuelve la dificultad de decidir si reparar, comprar usado o comprar nuevo un congelador deteriorado de la tienda de barrio de Ceris Paola de Hoyos (barrio Alto de las Acacias), y cualquier actor similar podría usarla para decidir entre alternativas de inversión con criterios de ingeniería económica (VPN, TIR, CAUE y B/C).
 
 ## Enlaces
 - **Aplicación desplegada:** https://viabilia-three.vercel.app

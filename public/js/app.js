@@ -1,7 +1,7 @@
 // ---------- Utilidades ----------
 const app = document.getElementById('app');
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
-const money = (v) => '$' + Math.round(v).toLocaleString('es-CO');
+const money = (v) => { const r = Math.round(v); return (r < 0 ? '−$' : '$') + Math.abs(r).toLocaleString('es-CO'); };
 const pct = (v) => (isNaN(v) ? 'No definida' : (v * 100).toFixed(1) + '%');
 let user = JSON.parse(localStorage.user || 'null');
 
@@ -19,12 +19,37 @@ const COL = ['#2563eb', '#059669', '#f59e0b', '#dc2626', '#60a5fa', '#34d399'];
 const av = (i = 0, s = 40) => `<svg class="av" width="${s}" height="${s}" viewBox="0 0 40 40" role="img" aria-label="Avatar ${i + 1}"><circle cx="20" cy="20" r="20" fill="${COL[i % 6]}"/><circle cx="14" cy="17" r="2.4" fill="#1f2937"/><circle cx="26" cy="17" r="2.4" fill="#1f2937"/><path d="M12 25q8 ${6 + (i % 3) * 3} 16 0" stroke="#1f2937" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>`;
 const MASCOTA = `<svg class="mascota" viewBox="0 0 200 200" role="img" aria-label="Viabi, la moneda mascota"><circle cx="100" cy="100" r="86" fill="#f59e0b"/><circle cx="100" cy="100" r="68" fill="#fef3c7" stroke="#d97706" stroke-width="4"/><text x="100" y="78" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="34" fill="#b45309">$</text><circle cx="78" cy="102" r="7" fill="#1f2937"/><circle cx="122" cy="102" r="7" fill="#1f2937"/><circle cx="80" cy="100" r="2.5" fill="#fff"/><circle cx="124" cy="100" r="2.5" fill="#fff"/><path d="M76 128q24 22 48 0" stroke="#1f2937" stroke-width="5" fill="none" stroke-linecap="round"/></svg>`;
 
+const PORTADA = `<svg class="ilus" viewBox="0 0 440 330" role="img" aria-label="Gráfica de barras que compara tres alternativas de inversión, con la mejor señalada, y una moneda sonriente que dice: decide con números"><rect width="440" height="330" rx="18" fill="#eff6ff"/><rect x="24" y="30" width="262" height="210" rx="14" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="42" y="52" font-family="Inter,sans-serif" font-weight="700" font-size="12" fill="#64748b">Costo anual equivalente por alternativa</text><path d="M44 204h226" stroke="#94a3b8" stroke-width="2"/><rect x="64" y="134" width="46" height="70" rx="5" fill="#2563eb"/><rect x="132" y="109" width="46" height="95" rx="5" fill="#f59e0b"/><rect x="200" y="86" width="46" height="118" rx="5" fill="#059669"/><text x="87" y="224" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="13" fill="#475569">A</text><text x="155" y="224" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="13" fill="#475569">B</text><text x="223" y="224" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="13" fill="#475569">C</text><rect x="183" y="60" width="80" height="20" rx="10" fill="#059669"/><path d="M193 70l4 4 7-8" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="234" y="74" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="12" fill="#fff">Conviene</text><rect x="24" y="254" width="80" height="28" rx="14" fill="#2563eb"/><text x="64" y="273" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="13" fill="#fff">VPN</text><rect x="112" y="254" width="80" height="28" rx="14" fill="#059669"/><text x="152" y="273" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="13" fill="#fff">TIR</text><rect x="200" y="254" width="86" height="28" rx="14" fill="#f59e0b"/><text x="243" y="273" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="13" fill="#1f2937">CAUE</text><rect x="292" y="30" width="130" height="46" rx="12" fill="#fff" stroke="#2563eb" stroke-width="2"/><path d="M332 76l-8 14 22-12z" fill="#fff" stroke="#2563eb" stroke-width="2"/><rect x="326" y="72" width="22" height="8" fill="#fff"/><text x="357" y="50" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="13" fill="#1e293b">¡Decide con</text><text x="357" y="67" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="13" fill="#1e293b">números!</text><path d="M302 150q-18-24-40-46" stroke="#059669" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M258 112l4-18 14 10z" fill="#059669"/><circle cx="352" cy="178" r="58" fill="#f59e0b"/><circle cx="352" cy="178" r="45" fill="#fef3c7" stroke="#d97706" stroke-width="4"/><text x="352" y="162" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="26" fill="#b45309">$</text><circle cx="336" cy="182" r="6" fill="#1f2937"/><circle cx="368" cy="182" r="6" fill="#1f2937"/><circle cx="338" cy="180" r="2" fill="#fff"/><circle cx="370" cy="180" r="2" fill="#fff"/><path d="M335 200q17 15 34 0" stroke="#1f2937" stroke-width="5" fill="none" stroke-linecap="round"/><ellipse cx="352" cy="304" rx="34" ry="9" fill="#d97706"/><ellipse cx="352" cy="296" rx="34" ry="9" fill="#f59e0b"/><ellipse cx="352" cy="288" rx="34" ry="9" fill="#fbbf24"/></svg>`;
+
 function cabecera() {
   const u = document.getElementById('user');
-  u.innerHTML = user ? `<button class="yo" id="perfil" aria-label="Mi perfil">${av(user.avatar, 36)}</button><button class="ghost" id="salir">Cerrar sesión</button>` : '';
-  if (user) { document.getElementById('perfil').onclick = perfil; document.getElementById('salir').onclick = salir; }
+  u.innerHTML = '<button class="ghost" id="n-inicio">Inicio</button>' + (user
+    ? `<button class="ghost" id="n-proy">Mis proyectos</button><button class="yo" id="perfil" aria-label="Mi perfil">${av(user.avatar, 36)}</button><button class="ghost" id="salir">Cerrar sesión</button>`
+    : '<button id="n-entrar">Entrar</button>');
+  document.getElementById('n-inicio').onclick = landing;
+  if (user) { document.getElementById('n-proy').onclick = proyectos; document.getElementById('perfil').onclick = perfil; document.getElementById('salir').onclick = salir; }
+  else document.getElementById('n-entrar').onclick = acceso;
 }
-function inicio() { cabecera(); user ? proyectos() : acceso(); }
+function inicio() { cabecera(); landing(); }
+
+function landing() {
+  app.innerHTML = `
+    <section class="hero">
+      <div><h1>Decide en qué invertir, con números.</h1>
+        <p>Viabilia compara alternativas de inversión con VPN, TIR y CAUE, y te dice cuál conviene. Pensada para tiendas de barrio, microempresas y estudiantes de ingeniería económica.</p>
+        <div class="row"><button id="empezar">${user ? 'Ir a mis proyectos' : 'Empezar'}</button><button class="ghost" id="como">Ver cómo funciona</button></div></div>
+      ${PORTADA}
+    </section>
+    <section class="card problema"><h2>Invertir sin comparar es adivinar</h2>
+      <p>¿Compro o arriendo? ¿Reparo o reemplazo? ¿Qué proyecto me deja más? Cada decisión de inversión cuesta plata y dura años. Viabilia convierte esa duda en una comparación con números: cuánto cuesta o rinde cada opción por año y cuál conviene según lo mínimo que quieres ganar.</p></section>
+    <section id="pasos"><h2>Cómo funciona</h2><div class="pasos">
+      <div class="card paso" style="--c:#2563eb"><span>1</span><b>Ingresa tus alternativas</b><p>Inversión, vida útil, ingresos y costos de cada opción, en pesos.</p></div>
+      <div class="card paso" style="--c:#059669"><span>2</span><b>Compara con indicadores</b><p>VPN, TIR, CAUE, beneficio/costo y recuperación, con gráficas.</p></div>
+      <div class="card paso" style="--c:#f59e0b"><span>3</span><b>Decide con una conclusión</b><p>Una frase clara dice cuál conviene y qué pasa si cambia la tasa.</p></div></div></section>
+    <p class="sup pie">Proyecto académico de Ingeniería Económica · Universidad de Cartagena</p>`;
+  document.getElementById('empezar').onclick = () => (user ? proyectos() : acceso());
+  document.getElementById('como').onclick = () => document.getElementById('pasos').scrollIntoView({ behavior: 'smooth' });
+}
 
 // ---------- Cálculos de ingeniería económica ----------
 function calc(a, tmar, inf) {
@@ -48,7 +73,7 @@ const mejor = (alts, tmar, inf) => alts.map((a) => ({ a, m: calc(a, tmar, inf) }
 function acceso() {
   app.innerHTML = `
     <section class="hero">
-      <div><h1>Decide en qué invertir, con números.</h1>
+      <div><h1>Entra a Viabilia</h1>
         <p>Compara alternativas de inversión con VPN, TIR, CAUE y beneficio/costo, y obtén una conclusión clara. Guarda tus proyectos en tu cuenta.</p>
         <form class="card auth" id="f"><h2>Entrar o crear cuenta</h2>
           <label>Correo<input type="email" name="email" required autocomplete="email"></label>
@@ -62,19 +87,24 @@ function acceso() {
     e.preventDefault();
     try {
       const r = await api('auth', { method: 'POST', body: JSON.stringify({ action: e.submitter.dataset.a, email: f.email.value, password: f.password.value }) });
-      localStorage.token = r.token; localStorage.user = JSON.stringify(r.user); user = r.user; inicio();
+      localStorage.token = r.token; localStorage.user = JSON.stringify(r.user); user = r.user; cabecera(); proyectos();
     } catch (er) { document.getElementById('err').textContent = er.message; }
   };
 }
 
 function perfil() {
-  app.innerHTML = `<h1>Mi perfil</h1><div class="card"><p>${esc(user.email)}</p><h2>Elige tu avatar</h2><div class="avs">${[0,1,2,3,4,5].map((i) => `<button data-i="${i}" aria-pressed="${i === user.avatar}" aria-label="Avatar ${i + 1}">${av(i, 64)}</button>`).join('')}</div><div class="row"><button class="ghost" id="atras">Volver a mis proyectos</button></div></div>`;
+  app.innerHTML = `<h1>Mi perfil</h1><div class="card"><p>${esc(user.email)}</p><h2>Elige tu avatar</h2><div class="avs">${[0,1,2,3,4,5].map((i) => `<button data-i="${i}" aria-pressed="${i === user.avatar}" aria-label="Avatar ${i + 1}">${av(i, 64)}</button>`).join('')}</div><div class="row"><button class="ghost" id="atras">Volver a mis proyectos</button></div></div><h2 style="margin-top:22px">Mis proyectos</h2><div class="lista" id="pl"><p class="sup">Cargando…</p></div>`;
   app.querySelectorAll('[data-i]').forEach((b) => b.onclick = async () => {
     user.avatar = +b.dataset.i; localStorage.user = JSON.stringify(user);
     await api('auth', { method: 'POST', body: JSON.stringify({ action: 'avatar', avatar: user.avatar }) }).catch(() => {});
     cabecera(); perfil();
   });
   document.getElementById('atras').onclick = proyectos;
+  api('projects').then((l) => {
+    const c = document.getElementById('pl'); if (!c) return;
+    c.innerHTML = l.length ? l.map((p) => `<div class="card proy"><b>${esc(p.name)}</b><br><small>Editado ${new Date(p.updated).toLocaleDateString('es-CO')}</small><div class="row"><button data-o="${p.id}">Abrir</button></div></div>`).join('') : '<p class="sup">Aún no tienes proyectos.</p>';
+    c.querySelectorAll('[data-o]').forEach((b) => b.onclick = async () => editor(await api('projects?id=' + b.dataset.o)));
+  }).catch(() => {});
 }
 
 async function proyectos() {
@@ -154,7 +184,7 @@ function editor(p) {
     const sens = [-3, 0, 3].map((dl) => { const s = mejor(d.alts, tmar + dl, inf)[0]; return `<tr><td>TMAR ${(tmar + dl).toFixed(1)} %</td><td>${esc(s.a.nombre)}</td><td>${money(s.m.caue)}</td></tr>`; }).join('');
     v.innerHTML = `<div class="row" style="margin:0;justify-content:space-between"><h2>${esc(d.nombre)}</h2><button class="ghost" onclick="window.print()">Imprimir o guardar PDF</button></div><p class="sup">${d.benef ? 'Beneficiario: ' + esc(d.benef) + '. ' : ''}Supuestos: TMAR ${tmar} % anual, inflación ${inf} % anual, método de comparación CAUE (permite comparar alternativas con distinta vida útil).</p>
       <div class="kpis">${kpi(nombre(top), 'alternativa recomendada')}${kpi(money(top.m.vpn), 'VPN ($)', 'clave')}${kpi(pct(top.m.tir), 'TIR (% anual)')}${kpi(money(top.m.caue), 'CAUE ($ por año)', 'clave')}${kpi(top.m.bc.toFixed(2), 'beneficio/costo')}${kpi(top.m.pri === null ? 'Más de ' + top.m.n + ' años' : top.m.pri.toFixed(1) + ' años', 'recuperación')}</div>
-      <div class="concl ${ok ? '' : 'no'}"><b>Conclusión.</b> ${ok ? `Conviene <b>${nombre(top)}</b>: tiene el mayor CAUE (${money(top.m.caue)} por año) y supera la TMAR de ${tmar} %.${r[1] ? ` Le sigue ${nombre(r[1])} con ${money(r[1].m.caue)} por año.` : ''}` : 'Ninguna alternativa supera la TMAR exigida. No se recomienda invertir con estos supuestos.'}</div>
+      <div class="concl ${ok ? '' : 'no'}"><b>Conclusión.</b> ${ok ? `Conviene <b>${nombre(top)}</b>: tiene el mayor CAUE (${money(top.m.caue)} por año) y supera la TMAR de ${tmar} %.${r[1] ? (r[1].m.caue > 0 ? ` Le sigue ${nombre(r[1])} con ${money(r[1].m.caue)} por año.` : ` ${nombre(r[1])} no supera la TMAR de ${tmar} %: su CAUE es ${money(r[1].m.caue)} por año.`) : ''}` : 'Ninguna alternativa supera la TMAR exigida. No se recomienda invertir con estos supuestos.'}</div>
       <div class="card" style="margin-top:16px">${barras('caue', 'Comparación por CAUE ($ por año)')}${barras('vpn', 'Comparación por VPN ($)')}</div>
       <h3>Comparación detallada</h3><div class="scroll"><table><tr><th>Alternativa</th><th>VPN ($)</th><th>TIR (%)</th><th>CAUE ($/año)</th><th>B/C</th><th>Vida (años)</th></tr>
       ${r.map((x) => `<tr><td>${nombre(x)}</td><td>${money(x.m.vpn)}</td><td>${pct(x.m.tir)}</td><td>${money(x.m.caue)}</td><td>${x.m.bc.toFixed(2)}</td><td>${x.m.n}</td></tr>`).join('')}</table></div>
